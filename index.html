@@ -164,18 +164,40 @@
     // Auto-copy ALL text to clipboard when user selects any part of #outputText
     const outputDiv = document.getElementById('outputText');
     outputDiv.addEventListener('mouseup', function() {
-      const selection = window.getSelection();
-      // Ensure the selection is within outputDiv and not empty
-      if (this.contains(selection.anchorNode) && selection.toString().length > 0) {
-        navigator.clipboard.writeText(this.innerText)
-          .then(() => {
-            console.log("Mocking text copied to clipboard!");
-          })
-          .catch(err => {
-            console.error("Failed to copy text: ", err);
-          });
-      }
+      setTimeout(() => {
+        const selection = window.getSelection();
+        // Only copy if selection is inside outputDiv and there's a non-empty selection
+        if (this.contains(selection.anchorNode) && selection.toString().length > 0) {
+          copyOutputText();
+        }
+      }, 0);
     });
+
+    // If user just clicks (no highlight), also copy entire text.
+    outputDiv.addEventListener('click', function() {
+      // If there's NO highlight, or user just does a quick click, still copy the entire text.
+      // The setTimeout ensures we don't conflict with the mouseup highlight logic.
+      setTimeout(() => {
+        const selection = window.getSelection();
+        // If the selection is empty, proceed to copy
+        if (!selection || selection.toString().length === 0) {
+          copyOutputText();
+        }
+      }, 0);
+    });
+
+    function copyOutputText() {
+      const textToCopy = outputDiv.innerText;
+      if (!textToCopy) return;
+
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          console.log("Mocking text copied to clipboard!");
+        })
+        .catch(err => {
+          console.error("Failed to copy text: ", err);
+        });
+    }
   </script>
 
 </body>
