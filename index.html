@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Primary Meta Tags -->
+  <title>SpongeBob Mocking Text Generator | SpongeBob Chicken Meme Text</title>
+  <meta name="description" content="Convert any text into SpongeBob Mocking Text (SpongeBob chicken meme text) instantly. Auto-copy and real-time transformation included!">
+  <meta name="keywords" content="SpongeBob mocking text, chicken meme text, spongebob meme text, mocking text generator, spongebob meme converter, spongebob text tool">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="SpongeBob Mocking Text Generator | Chicken Meme Text" />
+  <meta property="og:description" content="Use this free SpongeBob Mocking Text Generator to convert any phrase into the hilarious chicken meme text instantly!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/spongebob-mocking-text" />
+  <meta property="og:image" content="https://example.com/spongebob-image.jpg" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SpongeBob Mocking Text Generator" />
+  <meta name="twitter:description" content="Convert any text into SpongeBob Mocking Text (SpongeBob chicken meme text) instantly. Auto-copy included!" />
+  <meta name="twitter:image" content="https://example.com/spongebob-image.jpg" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SpongeBob Mocking Text Generator",
+    "description": "Convert your text into SpongeBob mocking text, also known as the SpongeBob chicken meme text, instantly!",
+    "url": "https://example.com/spongebob-mocking-text"
+  }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f0f0f0;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #666;
+      font-weight: normal;
+      font-size: 1.1rem;
+    }
+    .content-description {
+      max-width: 700px;
+      margin: 1rem auto;
+      color: #555;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    #outputText {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background: #e7f7fe;
+      border-radius: 4px;
+      min-height: 40px;
+      font-size: 1.1rem;
+      white-space: pre-wrap; /* Preserve spacing and line breaks */
+      cursor: pointer;
+    }
+    #outputText:hover {
+      background: #d3f0fd;
+    }
+    .info {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SpongeBob Mocking Text Generator</h1>
+  <h2>Convert Regular Text into SpongeBob Chicken Meme Text Instantly</h2>
+
+  <div class="content-description">
+    <p>
+      Welcome to our <strong>SpongeBob Mocking Text</strong> converter, the perfect tool to create that iconic 
+      <strong>“SpongeBob chicken meme text”</strong> you’ve seen all over social media. 
+      Simply type or paste your text below, and watch it transform in real-time to that 
+      <em>mOcKiNg</em> style. 
+    </p>
+    <p>
+      <strong>No extra steps needed!</strong> As you type, we automatically alternate 
+      between lowercase and uppercase letters. Plus, if you select any part of the 
+      output, the entire mocking text will be copied to your clipboard. Now you can 
+      easily paste it anywhere—social media posts, chats, or emails—to get a laugh 
+      out of everyone!
+    </p>
+  </div>
+
+  <div class="container">
+    <label for="inputText">Type or Paste Your Text Below:</label>
+    <textarea 
+      id="inputText" 
+      placeholder="Type something to see SpongeBob mocking text..."
+      oninput="generateMockText()"
+    ></textarea>
+
+    <div 
+      id="outputText" 
+      title="Select any part of this text to copy the entire mocking text to your clipboard">
+    </div>
+    <div class="info">
+      * Selecting any part of the output text automatically copies the full mocking text to your clipboard.
+    </div>
+  </div>
+
+  <script>
+    function generateMockText() {
+      const input = document.getElementById("inputText").value;
+      let result = "";
+      let toggleLower = true; // Start toggling with lowercase
+
+      for (let i = 0; i < input.length; i++) {
+        const char = input[i];
+
+        // Check if character is a letter
+        if (/[a-zA-Z]/.test(char)) {
+          result += toggleLower ? char.toLowerCase() : char.toUpperCase();
+          // Flip the toggle only if it's a letter
+          toggleLower = !toggleLower;
+        } else {
+          // For non-letter characters, just add them
+          result += char;
+        }
+      }
+
+      // Update the output text
+      document.getElementById("outputText").innerText = result;
+    }
+
+    // Auto-copy ALL text to clipboard when user selects any part of #outputText
+    const outputDiv = document.getElementById('outputText');
+    outputDiv.addEventListener('mouseup', function() {
+      const selection = window.getSelection();
+      // Ensure the selection is within outputDiv and not empty
+      if (this.contains(selection.anchorNode) && selection.toString().length > 0) {
+        navigator.clipboard.writeText(this.innerText)
+          .then(() => {
+            console.log("Mocking text copied to clipboard!");
+          })
+          .catch(err => {
+            console.error("Failed to copy text: ", err);
+          });
+      }
+    });
+  </script>
+
+</body>
+</html>
